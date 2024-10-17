@@ -2,5 +2,7 @@ FROM python:3.10
 WORKDIR /app
 COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
+RUN apt-get update && apt-get install -y ntpdate
+RUN ntpdate -s pool.ntp.org
 COPY . /app
-CMD python3 main.py
+CMD ["python3", "main.py"]
