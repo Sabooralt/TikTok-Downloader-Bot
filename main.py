@@ -13,10 +13,24 @@ import re
 from bs4 import BeautifulSoup as bs
 import time
 from datetime import timedelta
+import ntplib
 import math
 import base64
 from progress_bar import progress, TimeFormatter, humanbytes
 from dotenv import load_dotenv
+
+
+def sync_time():
+    try:
+        client = ntplib.NTPClient()
+        response = client.request('pool.ntp.org')
+        print("Time synchronized:", time.ctime(response.tx_time))
+    except Exception as e:
+        print(f"Failed to synchronize time: {e}")
+
+
+sync_time()
+
 
 load_dotenv()
 bot_token = os.environ.get('BOT_TOKEN')
