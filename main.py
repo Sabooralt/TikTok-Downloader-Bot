@@ -51,8 +51,8 @@ def start(client, message):
                           "__**Developer :**__ __@JayBeeDev__\n"
                           "__**Language :**__ __Python__\n"
                           "__**Framework :**__ __🔥 Pyrogram__",
-                     parse_mode='markdown',
-                     reply_markup=reply_markup)
+                          { parse_mode='markdown'},
+                          reply_markup=reply_markup)
 
 
 
@@ -63,7 +63,7 @@ def help(client, message):
     reply_markup = InlineKeyboardMarkup(kb)
     app.send_message(chat_id=message.from_user.id, text=f"Hello there, I am **TikTok Downloader Bot**.\nI can download any TikTok video from a given link.\n\n"
                                             "__Send me a TikTok video link__",
-                     parse_mode='markdown',
+                     {parse_mode='markdown'},
                      reply_markup=reply_markup)
 
 
@@ -71,7 +71,7 @@ def help(client, message):
 def tiktok_dl(client, message):
     a = app.send_message(chat_id=message.chat.id,
                          text='__Downloading File to the Server__',
-                         parse_mode='markdown')
+                        { parse_mode='markdown'})
     link = re.findall(r'\bhttps?://.*[(tiktok|douyin)]\S+', message.text)[0]
     link = link.split("?")[0]
 
@@ -132,7 +132,7 @@ def tiktok_dl(client, message):
                           f"**Size :** __{total_size} MB__\n\n"
                           f"__Uploaded by @{BOT_URL}__",
                           file_name=f"{directory}",
-                          parse_mode='markdown',
+                        { parse_mode='markdown'},
                           progress=progress,
                           progress_args=(a, start, title))
         a.delete()
