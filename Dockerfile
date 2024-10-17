@@ -5,4 +5,4 @@ RUN pip3 install -r requirements.txt
 RUN apt-get update && apt-get install -y ntpdate \
     && ntpdate -s pool.ntp.org
 COPY . /app
-CMD ["python3", "main.py"]
+CMD ntpdate -s pool.ntp.org && python3 main.py
